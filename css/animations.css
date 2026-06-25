@@ -1,0 +1,163 @@
+/* ============================================================
+   Animations & Keyframes — AEGIS-X
+   ============================================================ */
+
+/* ── Radar Sweep ── */
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Pulse ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* ── Blip Flash ── */
+@keyframes blipFlash {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+/* ── Scroll Indicator Bounce ── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+/* ── Fade In Up ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Fade In ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Slide In Left ── */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Slide In Right ── */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Grid Shimmer ── */
+@keyframes gridShimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
+}
+
+/* ── Stat Counter Glow ── */
+@keyframes statGlow {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(0, 200, 83, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(0, 200, 83, 0.4);
+  }
+}
+
+/* ── Typing Cursor ── */
+@keyframes cursorBlink {
+  0%, 100% { border-right-color: var(--accent-green); }
+  50%      { border-right-color: transparent; }
+}
+
+/* ── Flow Arrow Pulse ── */
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* ── Nav Scroll Transition ── */
+.nav--scrolled {
+  background: rgba(10, 12, 16, 0.95) !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ── CTA Pulse ── */
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.05);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow);
+}
+
+.btn--primary:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Scanline Effect ── */
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(600%); opacity: 0; }
+}
+
+/* ── Glitch Text Effect ── */
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 1px) }
+  40% { transform: translate(-1px, -1px) }
+  60% { transform: translate(2px, 1px) }
+  80% { transform: translate(1px, -1px) }
+  100% { transform: translate(0) }
+}
+
+.glitch-text {
+  animation: glitch 3s infinite;
+  display: inline-block;
+}
+
+/* ── Cyber Button Scanning Bracket ── */
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-15deg) translateX(-200%);
+  transition: transform 0.5s ease;
+}
+
+.btn--primary:hover::after {
+  transform: skewX(-15deg) translateX(1500%);
+}

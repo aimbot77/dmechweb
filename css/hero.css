@@ -1,0 +1,361 @@
+/* ============================================================
+   Hero Section — AEGIS-X (Creative Overhaul)
+   Left-aligned, asymmetric split with image showcase
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: calc(var(--nav-height) + var(--tricolor-height));
+}
+
+.hero__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 12, 16, 0.92) 0%,
+    rgba(10, 12, 16, 0.6) 40%,
+    rgba(10, 12, 16, 0.3) 65%,
+    rgba(10, 12, 16, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* Scanline texture overlay for tactile depth */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+.hero__left {
+  text-align: left;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 16px;
+  border: 1px solid var(--border-light);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2xl);
+  position: relative;
+}
+
+/* Chamfered corner cut on badge */
+.hero__badge::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  background: var(--bg-primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.hero__badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hero__headline {
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary);
+}
+
+/* Accent word styling */
+.hero__headline em {
+  font-style: normal;
+  color: var(--accent-green);
+  position: relative;
+}
+
+.hero__sub {
+  font-size: var(--fs-lg);
+  color: var(--text-secondary);
+  max-width: 44ch;
+  margin: 0 0 var(--space-2xl);
+  line-height: 1.6;
+}
+
+/* ── Stat Strip — horizontal bar with dividers ── */
+.hero__stats {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: var(--space-2xl);
+  border: 1px solid var(--border-light);
+  background: rgba(18, 21, 28, 0.6);
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+
+/* Corner cut on stat strip */
+.hero__stats::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-primary);
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+  z-index: 1;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 24px;
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.hero__stat + .hero__stat {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.hero__stat-value {
+  color: var(--accent-green);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xl);
+  margin-bottom: 4px;
+  text-shadow: 0 0 12px rgba(0, 200, 83, 0.25);
+}
+
+.hero__stat-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+}
+
+.hero__stat-sep {
+  display: none;
+}
+
+.hero__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ── Right side: Image showcase ── */
+.hero__right {
+  position: relative;
+}
+
+.hero__image-frame {
+  position: relative;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transform: perspective(800px) rotateY(-3deg);
+  transition: transform 0.6s ease;
+}
+
+.hero__image-frame:hover {
+  transform: perspective(800px) rotateY(0deg);
+}
+
+.hero__image-frame img {
+  width: 100%;
+  display: block;
+  filter: brightness(0.85) contrast(1.1);
+  transition: filter 0.4s ease;
+}
+
+/* Tactical Scanning Line */
+.hero__image-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 200, 83, 0.1) 50%,
+    rgba(0, 200, 83, 0.4) 100%
+  );
+  border-bottom: 2px solid var(--accent-green);
+  z-index: 1;
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Corner-cut on image frame */
+.hero__image-frame::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: var(--bg-primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  z-index: 2;
+}
+
+.hero__image-live {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent-green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(0, 200, 83, 0.3);
+  background: rgba(0, 200, 83, 0.08);
+  z-index: 2;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.hero__image-frame:hover img {
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* Floating status badge on image */
+.hero__image-status {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--border-subtle);
+  z-index: 2;
+}
+
+/* ── Scroll Indicator ── */
+.hero__scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.hero__scroll-chevron {
+  width: 16px;
+  height: 16px;
+  border-right: 1.5px solid var(--text-muted);
+  border-bottom: 1.5px solid var(--text-muted);
+  transform: rotate(45deg);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+  .hero__right { display: none; }
+  .hero__left { text-align: center; }
+  .hero__sub { margin: 0 auto var(--space-2xl); }
+  .hero__cta { justify-content: center; }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: calc(var(--nav-height) + var(--tricolor-height) + var(--space-xl));
+    text-align: center;
+  }
+  .hero__stats {
+    flex-direction: column;
+    border-radius: 8px; /* So it looks better when stacked */
+  }
+  .hero__stat + .hero__stat {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .hero__stat {
+    padding: 12px 16px;
+  }
+  .hero__headline { font-size: var(--fs-4xl); margin-bottom: var(--space-md); }
+  .hero__cta { 
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero__cta .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__headline { font-size: var(--fs-3xl); }
+  .hero__sub { font-size: var(--fs-sm); }
+  .hero__stat-value { font-size: var(--fs-lg); }
+}

@@ -1,0 +1,216 @@
+/* ============================================================
+   Footer — AEGIS-X
+   ============================================================ */
+
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-4xl) 0 var(--space-2xl);
+  position: relative;
+}
+
+/* Tricolor hairline at top */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--tri-saffron) 0%,
+    var(--tri-saffron) 33.33%,
+    var(--tri-white) 33.33%,
+    var(--tri-white) 66.66%,
+    var(--tri-green) 66.66%,
+    var(--tri-green) 100%
+  );
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.footer__logo-mark {
+  width: 28px;
+  height: 28px;
+}
+
+.footer__logo-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.footer__logo-text {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer__logo-text span {
+  color: var(--accent-olive);
+}
+
+.footer__tagline {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  max-width: 30ch;
+  line-height: 1.6;
+}
+
+.footer__col-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer__link {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.footer__link:hover {
+  color: var(--text-primary);
+}
+
+/* ── Bottom Bar ── */
+.footer__bottom {
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copy {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.footer__made {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__grid { grid-template-columns: 1fr; }
+}
+
+/* ── Legal Modal ── */
+.legal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.legal-modal--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.legal-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.legal-modal__content {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: var(--space-2xl);
+  transform: translateY(20px);
+  transition: transform var(--transition-fast);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.legal-modal--active .legal-modal__content {
+  transform: translateY(0);
+}
+
+.legal-modal__close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: var(--space-xs);
+  transition: color var(--transition-fast);
+}
+
+.legal-modal__close:hover {
+  color: var(--text-primary);
+}
+
+.legal-modal__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-sm);
+}
+
+.legal-modal__body {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}

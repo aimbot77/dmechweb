@@ -1,0 +1,237 @@
+/* ============================================================
+   Team Section — AEGIS-X (Portrait Grid & Modal)
+   ============================================================ */
+
+.team {
+  background: transparent;
+  padding: var(--space-4xl) 0;
+}
+
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3xl) var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+@media (max-width: 900px) {
+  .team__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl) var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .team__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Portrait Card ── */
+.team__portrait {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  group: portrait;
+  transition: transform var(--transition-base);
+}
+
+.team__portrait:hover {
+  transform: translateY(-4px);
+}
+
+.team__portrait:focus-visible {
+  outline: 2px solid var(--accent-olive);
+  outline-offset: 4px;
+}
+
+.team__portrait-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-md);
+  position: relative;
+}
+
+.team__portrait-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.03);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.team__portrait:hover .team__portrait-image::after {
+  opacity: 1;
+}
+
+.team__portrait-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.team__portrait:hover .team__portrait-image img {
+  transform: scale(1.03);
+}
+
+.team__portrait-name {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.team__portrait-role {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Interactive Modal Overlay ── */
+.team__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.team__modal--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.team__modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.team__modal-content {
+  position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: var(--space-3xl);
+  max-width: 500px;
+  width: 100%;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.team__modal--active .team__modal-content {
+  transform: translateY(0);
+}
+
+.team__modal-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.team__modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.team__modal-close:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.team__modal-name {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.team__modal-role {
+  font-size: var(--fs-sm);
+  color: var(--accent-olive);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-lg);
+  font-weight: var(--fw-semibold);
+}
+
+.team__modal-bio {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-2xl);
+}
+
+.team__modal-socials {
+  display: flex;
+  gap: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-xl);
+}
+
+.team__modal-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.team__modal-social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.team__modal-social-link:hover {
+  background: var(--bg-primary);
+  border-color: var(--border-light);
+  transform: translateY(-2px);
+  color: var(--accent-olive);
+}
+
+@media (max-width: 480px) {
+  .team__modal-content {
+    padding: var(--space-xl) var(--space-lg);
+  }
+  .team__modal-name {
+    font-size: var(--fs-lg);
+  }
+  .team__modal-close {
+    top: var(--space-sm);
+    right: var(--space-sm);
+  }
+}
