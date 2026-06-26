@@ -13,6 +13,7 @@
     org: { el: form.querySelector('#field-org'), required: true },
     designation: { el: form.querySelector('#field-designation'), required: true },
     email: { el: form.querySelector('#field-email'), required: true, type: 'email' },
+    phone: { el: form.querySelector('#field-phone'), required: true, type: 'tel' },
     message: { el: form.querySelector('#field-message'), required: false },
   };
 
@@ -20,8 +21,9 @@
   const formContainer = form.closest('.contact__form');
   const successEl = document.querySelector('.contact__success');
 
-  // Email validation pattern
+  // Email and Phone validation patterns
   const emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+  const phonePattern = /^\+?[0-9\s\-()]{7,15}$/;
 
   // ── Validate single field ── 
   function validateField(key) {
@@ -46,6 +48,15 @@
       valid = false;
       if (errorEl) {
         errorEl.textContent = 'Enter a valid official email address.';
+        errorEl.classList.add('form__error--visible');
+      }
+      field.el.classList.add('form__input--error');
+    }
+    // Phone format check
+    else if (field.type === 'tel' && value && !phonePattern.test(value)) {
+      valid = false;
+      if (errorEl) {
+        errorEl.textContent = 'Enter a valid phone number.';
         errorEl.classList.add('form__error--visible');
       }
       field.el.classList.add('form__input--error');
