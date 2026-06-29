@@ -31,6 +31,8 @@
 .team__portrait {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   cursor: pointer;
   group: portrait;
   transition: transform var(--transition-base);
@@ -46,14 +48,15 @@
 }
 
 .team__portrait-image {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 12px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
   overflow: hidden;
   background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 2px solid var(--border-subtle);
   margin-bottom: var(--space-md);
   position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .team__portrait-image::after {
