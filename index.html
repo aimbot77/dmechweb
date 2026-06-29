@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="css/team.css?v=4">
   <link rel="stylesheet" href="css/contact.css?v=4">
   <link rel="stylesheet" href="css/footer.css?v=2">
+  <link rel="stylesheet" href="css/company.css?v=1">
 </head>
 <body>
 
@@ -51,18 +52,31 @@
        │    components/footer.html       Footer              │
        └─────────────────────────────────────────────────────┘ -->
 
-  <div data-component="nav"></div>
-  <div data-component="project-video"></div>
-  <div data-component="hero"></div>
-  <div data-component="problem"></div>
-  <div data-component="architecture"></div>
-  <div data-component="sovereign"></div>
-  <div data-component="capabilities"></div>
-  <div data-component="dual-ui"></div>
-  <div data-component="team"></div>
-  <div data-component="contact"></div>
-  <div data-component="fab-enquiry"></div>
-  <div data-component="footer"></div>
+  <!-- View 1: Company Landing Page -->
+  <div id="view-company" class="view view--active">
+    <div data-component="nav-primary"></div>
+    <div data-component="who-are-we"></div>
+    <div data-component="achievements"></div>
+    <div data-component="team-leadership"></div>
+    <div data-component="contact-general"></div>
+    <div data-component="footer"></div>
+  </div>
+
+  <!-- View 2: AegisX Product Experience (Initially Hidden) -->
+  <div id="view-aegisx" class="view view--hidden" style="display: none; opacity: 0;">
+    <div data-component="nav-secondary"></div>
+    <div data-component="project-video"></div>
+    <div data-component="hero"></div>
+    <div data-component="problem"></div>
+    <div data-component="architecture"></div>
+    <div data-component="sovereign"></div>
+    <div data-component="capabilities"></div>
+    <div data-component="dual-ui"></div>
+    <div data-component="team"></div>
+    <div data-component="contact"></div>
+    <div data-component="fab-enquiry"></div>
+    <div data-component="footer"></div>
+  </div>
 
   <script src="js/component-loader.js?v=6"></script>
 

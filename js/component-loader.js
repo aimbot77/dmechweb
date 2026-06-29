@@ -45,6 +45,7 @@
     loadScript('js/team.js');
     loadScript('js/fab.js');
     loadScript('js/legal.js');
+    loadScript('js/transitions.js');
 
     // Initialize architecture video click-to-play
     setupArchitectureDemoVideo();
