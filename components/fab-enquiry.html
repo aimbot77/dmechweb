@@ -1,44 +1,8 @@
 <div class="fab-container">
-  <button class="fab-btn" id="fab-open-btn" aria-label="Open Enquiry Form">
+  <button class="fab-btn" id="fab-open-btn" aria-label="Request Briefing">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
     </svg>
     <span class="fab-tooltip">Request Briefing</span>
   </button>
-</div>
-
-<div class="fab-modal" id="fab-modal">
-  <div class="fab-modal-backdrop" id="fab-backdrop"></div>
-  <div class="fab-modal-content">
-    <button class="fab-modal-close" id="fab-close-btn" aria-label="Close">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
-    </button>
-    <div class="contact__form">
-      <div class="contact__form-title">Request a Briefing</div>
-      <form id="fab-briefing-form">
-        <input type="hidden" name="access_key" value="5f845fe1-2139-495f-b0fc-fe01aab2d882">
-        <div class="form__group">
-          <label class="form__label" for="fab-field-name">Full Name</label>
-          <input class="form__input" type="text" id="fab-field-name" name="name" placeholder="Enter your full name" required>
-        </div>
-        <div class="form__group">
-          <label class="form__label" for="fab-field-org">Organization</label>
-          <input class="form__input" type="text" id="fab-field-org" name="organization" placeholder="Ministry / Branch" required>
-        </div>
-        <div class="form__group">
-          <label class="form__label" for="fab-field-email">Official Email</label>
-          <input class="form__input" type="email" id="fab-field-email" name="email" placeholder="your.name@gov.in" required>
-        </div>
-        <div class="form__group">
-          <label class="form__label" for="fab-field-phone">Phone Number</label>
-          <input class="form__input" type="tel" id="fab-field-phone" name="phone" placeholder="Enter your phone number" required>
-        </div>
-        <button type="submit" class="btn btn--primary form__submit">Submit Request</button>
-      </form>
-      <div class="contact__success" id="fab-success-msg" style="display:none; padding: 2rem 1rem;">
-        <div class="contact__success-icon">✓</div>
-        <div class="contact__success-title">Request Received</div>
-      </div>
-    </div>
-  </div>
 </div>

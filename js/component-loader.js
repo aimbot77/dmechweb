@@ -45,6 +45,29 @@
     loadScript('js/team.js');
     loadScript('js/fab.js');
     loadScript('js/legal.js');
+
+    // Initialize architecture video click-to-play
+    setupArchitectureDemoVideo();
+
+    // Load Web3Forms captcha script
+    loadScript('https://web3forms.com/client/script.js');
+  }
+
+  function setupArchitectureDemoVideo() {
+    const demoVideoArea = document.getElementById('demo-video-area');
+    const demoVideo = document.getElementById('architecture-demo-video');
+    const demoOverlay = document.getElementById('demo-video-overlay');
+
+    if (demoVideoArea && demoVideo && demoOverlay) {
+      demoVideoArea.addEventListener('click', function () {
+        demoOverlay.style.display = 'none';
+        demoVideoArea.classList.add('video-active');
+        demoVideo.controls = true;
+        demoVideo.play().catch(function (err) {
+          console.error("Video play failed:", err);
+        });
+      }, { once: true });
+    }
   }
 
   function loadScript(src) {

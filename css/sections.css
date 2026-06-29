@@ -149,6 +149,8 @@
   width: 6px;
   height: 6px;
   background: var(--accent-green);
+}
+:is(.in-view, .revealed) .problem__card--aegis .problem__card-label::before {
   animation: pulse 2s infinite;
 }
 
@@ -344,6 +346,8 @@
   height: 1px;
   border-top: 1px dashed var(--accent-olive);
   opacity: 0.4;
+}
+:is(.in-view, .revealed) .architecture__arrow::before {
   animation: arrowPulse 2s ease-in-out infinite;
 }
 
@@ -416,6 +420,9 @@
   position: relative;
   border: 1px solid var(--border-subtle);
   overflow: hidden;
+}
+
+.architecture__demo-frame:not(.video-active) {
   cursor: pointer;
 }
 
@@ -429,15 +436,18 @@
   background: var(--bg-secondary);
   clip-path: polygon(0 0, 100% 0, 100% 100%);
   z-index: 3;
+  pointer-events: none;
 }
 
-.architecture__demo-frame img {
+.architecture__demo-frame img,
+.architecture__demo-video {
   width: 100%;
   display: block;
   transition: transform var(--transition-slow);
 }
 
-.architecture__demo-frame:hover img {
+.architecture__demo-frame:not(.video-active):hover img,
+.architecture__demo-frame:not(.video-active):hover .architecture__demo-video {
   transform: scale(1.02);
 }
 
@@ -801,6 +811,8 @@
   width: 8px;
   height: 8px;
   background: var(--accent-green);
+}
+:is(.in-view, .revealed) .dual-ui__panel-label::before {
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -844,10 +856,12 @@
   );
   border-bottom: 1px solid rgba(0, 200, 83, 0.5);
   z-index: 1;
-  animation: scanline 6s linear infinite;
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--transition-base);
+}
+:is(.in-view, .revealed) .dual-ui__panel-img::after {
+  animation: scanline 6s linear infinite;
 }
 
 .dual-ui__panel:hover .dual-ui__panel-img::after {
@@ -879,6 +893,8 @@
   width: 4px;
   height: 4px;
   background: var(--accent-green);
+}
+:is(.in-view, .revealed) .dual-ui__panel-status::before {
   animation: pulse 2s infinite;
 }
 

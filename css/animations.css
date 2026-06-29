@@ -141,8 +141,10 @@
 }
 
 .glitch-text {
-  animation: glitch 3s infinite;
   display: inline-block;
+}
+:is(.in-view, .revealed) .glitch-text {
+  animation: glitch 3s infinite;
 }
 
 /* ── Cyber Button Scanning Bracket ── */

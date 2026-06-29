@@ -228,6 +228,21 @@
     ctx.fillText('W', cx - radius - 8, cy + 4);
   }
 
+  let isVisible = false;
+
+  function startLoop() {
+    if (isVisible && !document.hidden && !animationId) {
+      draw();
+    }
+  }
+
+  function stopLoop() {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
   // ── Main Draw Loop ── 
   function draw() {
     ctx.clearRect(0, 0, width, height);
@@ -249,7 +264,23 @@
   function init() {
     resize();
     generateBlips();
-    draw();
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            startLoop();
+          } else {
+            stopLoop();
+          }
+        });
+      }, { threshold: 0 });
+      observer.observe(canvas);
+    } else {
+      isVisible = true;
+      startLoop();
+    }
   }
 
   // Handle resize
@@ -264,9 +295,9 @@
   // Pause when not visible
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
-      cancelAnimationFrame(animationId);
+      stopLoop();
     } else {
-      draw();
+      startLoop();
     }
   });
 

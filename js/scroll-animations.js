@@ -78,4 +78,26 @@
 
     requestAnimationFrame(update);
   }
+
+  // ── Section Active/In-View Observer for Infinite Animations ──
+  const activeObserverOptions = {
+    root: null,
+    rootMargin: '100px 0px 100px 0px', // start slightly early and end slightly late
+    threshold: 0.01
+  };
+
+  const activeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, activeObserverOptions);
+
+  const sections = document.querySelectorAll('section, header, footer, .global-bg, .hero, .project-video');
+  sections.forEach(function (section) {
+    activeObserver.observe(section);
+  });
 })();

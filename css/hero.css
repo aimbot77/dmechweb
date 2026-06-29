@@ -104,6 +104,8 @@
   width: 6px;
   height: 6px;
   background: var(--accent-green);
+}
+:is(.in-view, .revealed) .hero__badge-dot {
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -237,8 +239,10 @@
   );
   border-bottom: 2px solid var(--accent-green);
   z-index: 1;
-  animation: scanline 4s linear infinite;
   pointer-events: none;
+}
+:is(.in-view, .revealed) .hero__image-frame::before {
+  animation: scanline 4s linear infinite;
 }
 
 /* Corner-cut on image frame */

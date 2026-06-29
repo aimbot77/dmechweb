@@ -47,11 +47,14 @@
     <div class="architecture__demo reveal">
       <div class="architecture__demo-label">System Demonstration</div>
       <div class="architecture__demo-frame" id="demo-video-area">
-        <img src="assets/aegis3.jpg" alt="AEGIS-X Radar GUI with active threat tracking and EW status panel">
-        <div class="architecture__demo-overlay">
+        <video id="architecture-demo-video" class="architecture__demo-video" poster="assets/aegis3.jpg" preload="metadata">
+          <source src="assets/demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="architecture__demo-overlay" id="demo-video-overlay">
           <div class="architecture__demo-play"></div>
+          <div class="architecture__demo-text">▶ WATCH SYSTEM DEMO</div>
         </div>
-        <div class="architecture__demo-text">▶ WATCH SYSTEM DEMO</div>
       </div>
     </div>
   </div>

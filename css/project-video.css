@@ -39,18 +39,19 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  filter: brightness(1.25);
 }
 
 /* ── Gradient Overlay for Text Readability ── */
 .project-video__overlay {
   position: absolute;
   inset: 0;
-  /* Dark gradient starting from bottom-left corner */
+  /* Dimmed dark gradient to make the video brighter while preserving text contrast */
   background: linear-gradient(
     to top right,
-    rgba(10, 12, 16, 0.95) 0%,
-    rgba(10, 12, 16, 0.7) 30%,
-    rgba(10, 12, 16, 0.1) 70%,
+    rgba(10, 12, 16, 0.75) 0%,
+    rgba(10, 12, 16, 0.45) 30%,
+    rgba(10, 12, 16, 0.05) 70%,
     transparent 100%
   );
   z-index: 2;
@@ -73,17 +74,17 @@
 }
 
 .project-video__title {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
   font-weight: var(--fw-semibold);
-  color: var(--text-primary);
+  color: rgba(232, 234, 237, 0.85);
   line-height: 1.1;
   margin-bottom: var(--space-md);
   letter-spacing: -0.02em;
 }
 
 .project-video__desc {
-  font-size: var(--fs-lg);
-  color: var(--text-secondary);
+  font-size: var(--fs-md);
+  color: rgba(154, 160, 166, 0.80);
   margin-bottom: var(--space-2xl);
   max-width: 600px;
   line-height: 1.6;

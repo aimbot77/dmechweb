@@ -99,6 +99,13 @@
 
     if (!allValid) return;
 
+    // Check hCaptcha
+    const hCaptchaResponse = form.querySelector('textarea[name="h-captcha-response"]');
+    if (hCaptchaResponse && !hCaptchaResponse.value) {
+      alert("Please complete the CAPTCHA challenge.");
+      return;
+    }
+
     submitBtn.textContent = 'SUBMITTING...';
     submitBtn.disabled = true;
 
