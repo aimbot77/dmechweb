@@ -15,7 +15,7 @@
 
   slots.forEach(function (slot) {
     const name = slot.getAttribute('data-component');
-    const url  = COMPONENT_DIR + name + '.html?v=' + Date.now();
+    const url  = COMPONENT_DIR + name + '.html?v=7';
 
     fetch(url)
       .then(function (res) {
@@ -49,6 +49,9 @@
     // Initialize architecture video click-to-play
     setupArchitectureDemoVideo();
 
+    // Initialize lazy video playback for hero video
+    setupLazyHeroVideo();
+
     // Load Web3Forms captcha script
     loadScript('https://web3forms.com/client/script.js');
   }
@@ -67,6 +70,28 @@
           console.error("Video play failed:", err);
         });
       }, { once: true });
+    }
+  }
+
+  /** Play the hero video only when it's visible in the viewport */
+  function setupLazyHeroVideo() {
+    var heroVideo = document.getElementById('project-hero-video');
+    if (!heroVideo) return;
+
+    if ('IntersectionObserver' in window) {
+      var videoObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            heroVideo.play().catch(function () {});
+          } else {
+            heroVideo.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+      videoObserver.observe(heroVideo);
+    } else {
+      // Fallback: just play it
+      heroVideo.play().catch(function () {});
     }
   }
 

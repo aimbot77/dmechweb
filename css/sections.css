@@ -349,6 +349,7 @@
 }
 :is(.in-view, .revealed) .architecture__arrow::before {
   animation: arrowPulse 2s ease-in-out infinite;
+  will-change: opacity;
 }
 
 /* Architecture image showcase */
@@ -862,6 +863,7 @@
 }
 :is(.in-view, .revealed) .dual-ui__panel-img::after {
   animation: scanline 6s linear infinite;
+  will-change: transform;
 }
 
 .dual-ui__panel:hover .dual-ui__panel-img::after {

@@ -41,7 +41,7 @@ body {
 /* 1. Subtle Animated Grid */
 .global-bg__grid {
   position: absolute;
-  inset: -100% 0; /* Extra height for animation */
+  inset: -80px 0; /* Only 1 tile overflow needed for seamless loop */
   background-image:
     repeating-linear-gradient(
       0deg,
@@ -59,6 +59,8 @@ body {
     );
   background-size: 80px 80px;
   animation: bg-scroll 60s linear infinite;
+  will-change: transform;
+  contain: strict;
   opacity: 0.7;
 }
 
@@ -71,15 +73,16 @@ body {
 .global-bg__glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(80px);
   opacity: 0.15;
+  will-change: transform;
 }
 
 .global-bg__glow--1 {
   top: -10%;
   left: -10%;
-  width: 50vw;
-  height: 50vw;
+  width: 40vw;
+  height: 40vw;
   background: var(--accent-olive);
   animation: float-glow 20s ease-in-out infinite alternate;
 }
@@ -87,8 +90,8 @@ body {
 .global-bg__glow--2 {
   bottom: -20%;
   right: -10%;
-  width: 60vw;
-  height: 60vw;
+  width: 50vw;
+  height: 50vw;
   background: #1e3a8a; /* Deep blue tactical glow */
   animation: float-glow 25s ease-in-out infinite alternate-reverse;
 }
@@ -103,8 +106,9 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.04;
+  opacity: 0.03;
   mix-blend-mode: overlay;
+  will-change: opacity;
 }
 
 /* ── Scrollbar ── */

@@ -141,7 +141,7 @@
   margin-bottom: var(--space-2xl);
   border: 1px solid var(--border-light);
   background: rgba(18, 21, 28, 0.6);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(2px);
   position: relative;
 }
 
@@ -243,6 +243,7 @@
 }
 :is(.in-view, .revealed) .hero__image-frame::before {
   animation: scanline 4s linear infinite;
+  will-change: transform;
 }
 
 /* Corner-cut on image frame */
@@ -271,6 +272,8 @@
   border: 1px solid rgba(0, 200, 83, 0.3);
   background: rgba(0, 200, 83, 0.08);
   z-index: 2;
+}
+:is(.in-view, .revealed) .hero__image-live {
   animation: pulse 3s ease-in-out infinite;
 }
 
