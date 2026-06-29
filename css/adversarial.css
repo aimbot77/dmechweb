@@ -1,0 +1,88 @@
+/* ============================================================
+   Adversarial Simulation Section Styles
+   ============================================================ */
+
+.adversarial {
+  position: relative;
+  overflow: hidden;
+}
+
+.adversarial__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.adversarial__card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.adversarial__card:hover {
+  border-color: var(--accent-green);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 200, 83, 0.05);
+}
+
+.adversarial__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.adversarial__card-idx {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--accent-green);
+  letter-spacing: 0.1em;
+}
+
+.adversarial__card-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-green);
+}
+
+.adversarial__card-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm) 0;
+  text-transform: uppercase;
+}
+
+.adversarial__card-text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Tactical Corner */
+.adversarial__card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border-bottom: 2px solid var(--accent-green);
+  border-right: 2px solid var(--accent-green);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.adversarial__card:hover::after {
+  opacity: 1;
+}

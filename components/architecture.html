@@ -1,46 +1,81 @@
 <!-- ═══════════════════════════════════════════════════════════
-     [02] HOW IT WORKS — Three-layer architecture pipeline
+     [02] HOW IT WORKS — Five-layer architecture pipeline
      ═══════════════════════════════════════════════════════════ -->
 <section class="section section--alt architecture" id="architecture" data-nav-section="architecture">
   <div class="container">
     <div class="section__number reveal">[02] How It Works</div>
-    <h2 class="section__title reveal">Three-Layer Architecture</h2>
-    <p class="section__subtitle reveal">Sensor data flows through a deterministic pipeline: fuse, decide, act — with full audit trail at every stage.</p>
+    <h2 class="section__title reveal">Five-Layer Architecture</h2>
+    <p class="section__subtitle reveal">Sensor data flows through a deterministic pipeline: physics, fuse, decide, verify, act — with full audit trail at every stage.</p>
 
     <div class="architecture__flow reveal">
+      
+      <!-- LAYER 1 -->
       <div class="architecture__node">
-        <div class="architecture__node-label">Input</div>
-        <div class="architecture__node-title">Sensor Fusion</div>
+        <div class="architecture__node-label">Layer 1</div>
+        <div class="architecture__node-title">Physics & Environment Engine</div>
         <div class="architecture__node-list">
-          <div class="architecture__node-item">Radar</div>
-          <div class="architecture__node-item">RF Detection</div>
-          <div class="architecture__node-item">Thermal Imaging</div>
-          <div class="architecture__node-item">Acoustic Arrays</div>
-          <div class="architecture__node-item">LiDAR</div>
+          <div class="architecture__node-item"><strong>ISA Standard Atmosphere (0–86 km):</strong> Real air density, temperature, pressure, speed of sound at altitude</div>
+          <div class="architecture__node-item"><strong>Dryden Turbulence Model:</strong> Ornstein-Uhlenbeck stochastic process for wind gusts (mean-reverting, exact discretisation)</div>
+          <div class="architecture__node-item"><strong>Weather Modifiers:</strong> Rain intensity, fog density, gust magnitude dynamically affect sensor performance</div>
+          <div class="architecture__node-item"><strong>Terrain Engine:</strong> Procedural elevation mesh, ray-march line-of-sight checks — system knows when a threat is behind a ridge</div>
+          <div class="architecture__node-item"><strong>Drag Physics:</strong> Quaternion 3D geometry + Mach compressibility correction on drag polar</div>
         </div>
       </div>
       <div class="architecture__arrow">→</div>
+
+      <!-- LAYER 2 -->
       <div class="architecture__node">
-        <div class="architecture__node-label">Core</div>
+        <div class="architecture__node-label">Layer 2</div>
+        <div class="architecture__node-title">Hardware Sensor Stack</div>
+        <div class="architecture__node-list">
+          <div class="architecture__node-item"><strong>RTL-SDR V3:</strong> Detects RC control links at 433/915 MHz and 2.4 GHz FHSS/DSSS, signal strength + rough distance estimate, non-blocking</div>
+          <div class="architecture__node-item"><strong>Webcam Visual Tracker:</strong> OpenCV background subtraction + contour detection, pixel-to-arena coordinate conversion, velocity via rolling linear regression, &lt;50ms frame budget</div>
+          <div class="architecture__node-item"><strong>Benewake TFMini LiDAR:</strong> UART at 100 Hz, checksum validation, kill confirmation when interceptor closes to kill radius</div>
+          <div class="architecture__node-item"><strong>nRF24L01 Backup Comms:</strong> Dual-role TX (Pi 4 → interceptors for GOTO/RTB/HOLD when MAVLink is down) and RX (threat drone → Pi 4 for high-accuracy secondary track), 32-byte payload, 10 Hz max</div>
+          <div class="architecture__node-item"><strong>ASTERIX + ADS-B adapters:</strong> Standard radar protocols for real radar integration</div>
+          <div class="architecture__node-item"><strong>MAVLink Bridge:</strong> Interceptor telemetry and control</div>
+        </div>
+      </div>
+      <div class="architecture__arrow">→</div>
+
+      <!-- LAYER 3 -->
+      <div class="architecture__node">
+        <div class="architecture__node-label">Layer 3</div>
         <div class="architecture__node-title">Decision Engine</div>
         <div class="architecture__node-list">
-          <div class="architecture__node-item">CCPL RL Framework</div>
-          <div class="architecture__node-item">Hungarian Optimizer</div>
-          <div class="architecture__node-item">Threat Prioritization</div>
-          <div class="architecture__node-item">Asset Allocation</div>
+          <div class="architecture__node-item"><strong>CCPL RL Framework:</strong> Indigenous — zero foreign ML dependencies, cannot be restricted or backdoored</div>
+          <div class="architecture__node-item"><strong>Hungarian Optimizer:</strong> Optimal effector assignment</div>
+          <div class="architecture__node-item"><strong>Threat Prioritization & Asset Allocation:</strong> Dynamic real-time scoring</div>
+          <div class="architecture__node-item"><strong>Full Audit Trail:</strong> State saved at every tick</div>
         </div>
       </div>
       <div class="architecture__arrow">→</div>
-      <div class="architecture__node">
-        <div class="architecture__node-label">Output</div>
-        <div class="architecture__node-title">Effector Control</div>
+
+      <!-- LAYER 4 -->
+      <div class="architecture__node" style="border-color: var(--tricolor-saffron); box-shadow: inset 0 0 20px rgba(255, 153, 51, 0.05);">
+        <div class="architecture__node-label" style="color: var(--tricolor-saffron);">Layer 4</div>
+        <div class="architecture__node-title">Safety Layer</div>
         <div class="architecture__node-list">
-          <div class="architecture__node-item">Effector Triggering</div>
-          <div class="architecture__node-item">ROE Enforcement</div>
-          <div class="architecture__node-item">Audit Logging</div>
-          <div class="architecture__node-item">Operator Override</div>
+          <div class="architecture__node-item"><strong>Pre-arm Checklist:</strong> 6 mandatory checks before any interceptor can arm (safety config, geofence, arena config, kill switch channel, engagement mode, IC separation). System CANNOT proceed if any single check fails.</div>
+          <div class="architecture__node-item"><strong>Geofence Enforcement:</strong> Polygon boundary, ray-casting point-in-polygon, stateless per check, &lt;0.1ms latency, fail-safe on uncertainty (blocks command, never guesses)</div>
+          <div class="architecture__node-item"><strong>Hardware Kill Switch:</strong> Monitors RC channel 8 via MAVLink, debounced with 3 consecutive readings to prevent RF noise false triggers, immediately RTBs ALL interceptors on activation</div>
+          <div class="architecture__node-item"><strong>Safety Gate:</strong> Centralized gate that ALL commands pass through before reaching interceptors</div>
+          <div class="architecture__node-item"><strong>ROE System:</strong> PIN-protected configuration (SHA-256 hashed), three modes: MANUAL / SEMI_AUTO / AUTO, configurable confidence threshold, time threshold, engagement zone radius</div>
         </div>
       </div>
+      <div class="architecture__arrow">→</div>
+
+      <!-- LAYER 5 -->
+      <div class="architecture__node">
+        <div class="architecture__node-label">Layer 5</div>
+        <div class="architecture__node-title">Watchdog & Fault Tolerance</div>
+        <div class="architecture__node-list">
+          <div class="architecture__node-item"><strong>Supervisor:</strong> Runs as separate OS process (NOT a thread), survives crashes, OOM kills, unhandled signals. Auto-restarts AEGIS-X up to 3 times, then triggers failsafe</div>
+          <div class="architecture__node-item"><strong>Failsafe Broadcaster:</strong> UDP multicast to ALL interceptors on LAN, 3 retries at 100ms spacing (&lt;400ms total). Modes: RTB / HOLD / COMMIT_THEN_RTB. Stdlib only — works from partially crashed process</div>
+          <div class="architecture__node-item"><strong>Heartbeat Monitor:</strong> Detects pipeline stalls before they become failures</div>
+        </div>
+      </div>
+      
     </div>
 
     <!-- Demo Video Section -->
@@ -59,4 +94,3 @@
     </div>
   </div>
 </section>
-<!-- </body> -->

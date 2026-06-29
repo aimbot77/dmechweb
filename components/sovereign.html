@@ -46,6 +46,24 @@
         </div>
       </div>
     </div>
+    
+    <div class="sovereign__deployment reveal reveal-delay-3" style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border-subtle);">
+      <h3 class="section__title" style="font-size: var(--fs-xl); margin-bottom: 2rem;">Deployment &amp; Hardening</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <div class="sovereign__card">
+          <div class="sovereign__card-title" style="margin-bottom: 0.5rem;">OS &amp; User Space</div>
+          <p class="sovereign__card-text">Bare-metal install: Ubuntu 22.04, dedicated aegis_user with no login shell. Strict systemd hardening: NoNewPrivileges, ProtectSystem=strict, PrivateTmp.</p>
+        </div>
+        <div class="sovereign__card">
+          <div class="sovereign__card-title" style="margin-bottom: 0.5rem;">Air-Gapped Targets</div>
+          <p class="sovereign__card-text">--offline flag for fully air-gapped deployment. Docker + Pi 4 ARM64 deploy targets natively supported.</p>
+        </div>
+        <div class="sovereign__card">
+          <div class="sovereign__card-title" style="margin-bottom: 0.5rem;">Latency Profiling &amp; Licensing</div>
+          <p class="sovereign__card-text">Latency profiler explicitly benchmarks Pi 4 ARM64 (simulation numbers from x86 laptops do not transfer). License validator uses HMAC signing key via /run/secrets/.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <!-- </body> -->

@@ -217,7 +217,7 @@
 
 .architecture__flow {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
+  grid-template-columns: 1fr;
   gap: var(--space-md);
   align-items: stretch;
   margin-bottom: var(--space-4xl);
@@ -331,6 +331,9 @@
   font-family: var(--font-mono);
   font-size: var(--fs-xl);
   color: var(--accent-olive);
+  opacity: 0.5;
+  transform: rotate(90deg);
+  padding: var(--space-xs) 0;
   position: relative;
 }
 

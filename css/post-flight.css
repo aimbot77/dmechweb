@@ -1,0 +1,113 @@
+/* ============================================================
+   Post-Flight Analyzer Section Styles
+   ============================================================ */
+
+.post-flight {
+  position: relative;
+  overflow: hidden;
+}
+
+.post-flight__timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+  position: relative;
+}
+
+.post-flight__timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 2px;
+  background: var(--border-subtle);
+}
+
+.post-flight-item {
+  display: flex;
+  gap: var(--space-xl);
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-xl);
+  border-radius: 8px;
+  transition: all var(--transition-base);
+  margin-left: 48px;
+}
+
+.post-flight-item:hover {
+  border-color: var(--accent-olive);
+  transform: translateX(5px);
+}
+
+.post-flight-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  width: 24px;
+  height: 2px;
+  background: var(--border-subtle);
+  transform: translateY(-50%);
+  transition: background var(--transition-base);
+}
+
+.post-flight-item:hover::before {
+  background: var(--accent-olive);
+}
+
+.post-flight-item__dot {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 2px solid var(--accent-olive);
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: all var(--transition-base);
+}
+
+.post-flight-item:hover .post-flight-item__dot {
+  background: var(--accent-olive);
+  box-shadow: 0 0 15px rgba(107, 124, 94, 0.5);
+}
+
+.post-flight-item__content {
+  flex: 1;
+}
+
+.post-flight-item__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.post-flight-item__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .post-flight__timeline::before {
+    left: 12px;
+  }
+  .post-flight-item {
+    margin-left: 24px;
+    padding: var(--space-md);
+  }
+  .post-flight-item::before {
+    left: -12px;
+    width: 12px;
+  }
+  .post-flight-item__dot {
+    left: -18px;
+  }
+}

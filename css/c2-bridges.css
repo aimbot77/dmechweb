@@ -1,0 +1,87 @@
+/* ============================================================
+   C2 Bridges Section Styles
+   ============================================================ */
+
+.c2-bridges {
+  position: relative;
+  overflow: hidden;
+}
+
+.c2-bridges__tagline {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-olive);
+  padding: var(--space-xl);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-4xl);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  color: var(--text-primary);
+  display: inline-block;
+}
+
+.c2-bridges__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+}
+
+.c2-bridge-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-xl);
+  position: relative;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.c2-bridge-card:hover {
+  background: var(--bg-elevated);
+  border-color: var(--accent-green);
+  transform: translateY(-5px);
+}
+
+.c2-bridge-card__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(107, 124, 94, 0.1);
+  color: var(--accent-olive);
+  border-radius: 8px;
+  margin-bottom: var(--space-md);
+}
+
+.c2-bridge-card__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.c2-bridge-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.c2-bridge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+.c2-bridge-card:hover::before {
+  transform: scaleX(1);
+}
