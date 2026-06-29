@@ -150,9 +150,7 @@
   height: 6px;
   background: var(--accent-green);
 }
-:is(.in-view, .revealed) .problem__card--aegis .problem__card-label::before {
-  animation: pulse 2s infinite;
-}
+/* Pulse animation removed for performance */
 
 .problem__card-row {
   display: grid;
@@ -347,10 +345,7 @@
   border-top: 1px dashed var(--accent-olive);
   opacity: 0.4;
 }
-:is(.in-view, .revealed) .architecture__arrow::before {
-  animation: arrowPulse 2s ease-in-out infinite;
-  will-change: opacity;
-}
+/* Arrow pulse animation removed for performance */
 
 /* Architecture image showcase */
 .architecture__image-showcase {
@@ -813,9 +808,7 @@
   height: 8px;
   background: var(--accent-green);
 }
-:is(.in-view, .revealed) .dual-ui__panel-label::before {
-  animation: pulse 2s ease-in-out infinite;
-}
+/* Dual-UI pulse animation removed for performance */
 
 .dual-ui__panel-img {
   border: 1px solid var(--border-subtle);
@@ -861,10 +854,7 @@
   opacity: 0;
   transition: opacity var(--transition-base);
 }
-:is(.in-view, .revealed) .dual-ui__panel-img::after {
-  animation: scanline 6s linear infinite;
-  will-change: transform;
-}
+/* Dual-UI scanline animation removed for performance */
 
 .dual-ui__panel:hover .dual-ui__panel-img::after {
   opacity: 1;
@@ -896,9 +886,7 @@
   height: 4px;
   background: var(--accent-green);
 }
-:is(.in-view, .revealed) .dual-ui__panel-status::before {
-  animation: pulse 2s infinite;
-}
+/* Dual-UI status pulse removed for performance */
 
 .dual-ui__caption {
   margin-top: var(--space-2xl);

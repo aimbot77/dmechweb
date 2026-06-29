@@ -220,7 +220,6 @@
   inset: -5px;
   border-radius: 50%;
   border: 1px solid var(--accent-green);
-  animation: pulse 2s infinite;
   opacity: 0;
 }
 
@@ -270,9 +269,7 @@
 .fab-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(10, 12, 16, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(10, 12, 16, 0.9);
 }
 
 .fab-modal-content {

@@ -102,8 +102,7 @@
 
 /* ── Nav Scroll Transition ── */
 .nav--scrolled {
-  background: rgba(10, 12, 16, 0.95) !important;
-  backdrop-filter: blur(8px);
+  background: rgba(10, 12, 16, 0.97) !important;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -143,9 +142,7 @@
 .glitch-text {
   display: inline-block;
 }
-:is(.in-view, .revealed) .glitch-text {
-  animation: glitch 3s infinite;
-}
+/* Glitch animation disabled for performance — constant transform recalculations */
 
 /* ── Cyber Button Scanning Bracket ── */
 .btn--primary::after {
