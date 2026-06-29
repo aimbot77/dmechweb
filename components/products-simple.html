@@ -1,18 +1,29 @@
 <section class="section section--alt products-simple" id="products">
   <div class="container">
     <div class="section__number reveal">[02] Our Products</div>
+    <h2 class="section__title reveal" style="margin-bottom: 3rem;">1. AegisX</h2>
     
-    <div class="tilt-card reveal reveal-delay-1" style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 3rem; margin-top: 2rem; max-width: 800px; cursor: pointer;" id="btn-enter-aegisx-card">
-      <h2 class="section__title" style="margin-bottom: 1.5rem; font-size: clamp(2rem, 3vw, 2.5rem);">1. AegisX</h2>
-      <p class="section__subtitle" style="text-transform: none; color: var(--text-primary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.7;">
-        Think of AegisX as the intelligent brain of a drone interceptor system. 
-        It automatically detects, tracks, and makes split-second decisions to neutralize rogue drones. 
-        It is designed to keep our skies safe autonomously, without needing a human to manually control it every step of the way.
-      </p>
+    <div style="display: flex; gap: 4rem; align-items: center; flex-wrap: wrap;">
+      
+      <!-- Round Image with Tilt Effect -->
+      <div class="tilt-card reveal" style="flex-shrink: 0; margin: 0 auto;">
+        <div style="width: 280px; height: 280px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-olive); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); cursor: pointer;" id="btn-enter-aegisx-img">
+          <img src="assets/aegis1.jpg" alt="AegisX System" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
 
-      <button class="btn btn--primary" id="btn-enter-aegisx" style="pointer-events: none;">
-        <span>View AegisX System</span>
-      </button>
+      <!-- Text Description -->
+      <div class="reveal reveal-delay-1" style="flex: 1; min-width: 300px; max-width: 600px;">
+        <p class="section__subtitle" style="text-transform: none; color: var(--text-primary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.7;">
+          Think of AegisX as the intelligent brain of a drone interceptor system. 
+          It automatically detects, tracks, and makes split-second decisions to neutralize rogue drones. 
+          It is designed to keep our skies safe autonomously, without needing a human to manually control it every step of the way.
+        </p>
+        <button class="btn btn--primary" id="btn-enter-aegisx">
+          <span>View AegisX System</span>
+        </button>
+      </div>
+
     </div>
   </div>
 </section>
