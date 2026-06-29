@@ -62,6 +62,9 @@
     if (btnEnterAegisX) btnEnterAegisX.addEventListener('click', showAegisX);
     if (btnEnterAegisXMobile) btnEnterAegisXMobile.addEventListener('click', showAegisX);
     if (btnBackCompany) btnBackCompany.addEventListener('click', showCompany);
+    
+    const btnEnterAegisXCard = document.getElementById('btn-enter-aegisx-card');
+    if (btnEnterAegisXCard) btnEnterAegisXCard.addEventListener('click', showAegisX);
   }
 
   // If DOM is already loaded (because it's injected by component-loader), run now

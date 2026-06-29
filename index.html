@@ -36,9 +36,9 @@
 
   <!-- Global Tactical Background -->
   <div class="global-bg">
-    <div class="global-bg__grid"></div>
-    <div class="global-bg__glow global-bg__glow--1"></div>
-    <div class="global-bg__glow global-bg__glow--2"></div>
+    <div class="global-bg__grid" data-parallax="0.2"></div>
+    <div class="global-bg__glow global-bg__glow--1" data-parallax="-0.3"></div>
+    <div class="global-bg__glow global-bg__glow--2" data-parallax="0.1"></div>
     <div class="global-bg__noise"></div>
   </div>
 
@@ -62,6 +62,7 @@
 
   <!-- View 1: Company Landing Page -->
   <div id="view-company" class="view view--active">
+    <canvas id="mecha-canvas" class="mecha-canvas"></canvas>
     <div data-component="nav-primary"></div>
     <div data-component="who-are-we"></div>
     <div data-component="products-simple"></div>

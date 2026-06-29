@@ -45,6 +45,9 @@
     loadScript('js/team.js');
     loadScript('js/fab.js');
     loadScript('js/legal.js');
+    loadScript('js/tilt.js');
+    loadScript('js/mecha-canvas.js');
+    loadScript('js/parallax.js');
     loadScript('js/transitions.js');
 
     // Initialize architecture video click-to-play

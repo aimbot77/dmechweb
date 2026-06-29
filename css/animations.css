@@ -160,3 +160,32 @@
 .btn--primary:hover::after {
   transform: skewX(-15deg) translateX(1500%);
 }
+
+/* ── Cyber Reveal Text Effect ── */
+@keyframes cyberReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(10px) brightness(200%);
+    letter-spacing: 0.1em;
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(2px) brightness(150%);
+    letter-spacing: -0.05em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) brightness(100%);
+    letter-spacing: -0.03em;
+  }
+}
+
+.cyber-reveal {
+  opacity: 0;
+  animation: cyberReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.cyber-reveal-delay-1 { animation-delay: 0.3s; }
+.cyber-reveal-delay-2 { animation-delay: 0.6s; }
