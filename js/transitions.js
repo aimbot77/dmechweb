@@ -1,5 +1,5 @@
 /**
- * SPA Transitions — AEGIS-X / DmechatroniX
+ * SPA Transitions — AEGIS-X / D-mechatroniX
  * Handles smooth switching between Company View and AegisX Product View.
  */
 (function () {

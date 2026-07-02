@@ -1,6 +1,6 @@
 /**
  * Interactive Particle Network (Mechatronics Node Grid)
- * A visually stunning particle background for the DmechatroniX company view.
+ * A visually stunning particle background for the D-mechatroniX company view.
  */
 (function () {
   'use strict';
