@@ -1,5 +1,5 @@
 /**
- * Team Section Interactive Modal Logic
+ * Team Section Interactive Modal & Card Flip Logic
  */
 
 function initTeamModal() {
@@ -77,6 +77,35 @@ function initTeamModal() {
   });
 }
 
-// Since components are loaded dynamically, this might be called from component-loader.js
-// But just in case, we also try to init it on standard DOM content loaded.
-document.addEventListener('DOMContentLoaded', initTeamModal);
+function initTeamCardFlip() {
+  const cards = document.querySelectorAll('.leader-card');
+  cards.forEach(card => {
+    const flipBtn = card.querySelector('.leader-card__flip-btn');
+    const flipBackBtn = card.querySelector('.leader-card__flip-back-btn');
+    
+    if (flipBtn) {
+      flipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.add('leader-card--flipped');
+      });
+    }
+    
+    if (flipBackBtn) {
+      flipBackBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.remove('leader-card--flipped');
+      });
+    }
+  });
+}
+
+function initTeam() {
+  initTeamModal();
+  initTeamCardFlip();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTeam);
+} else {
+  initTeam();
+}
